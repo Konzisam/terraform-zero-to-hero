@@ -176,7 +176,7 @@ instance_value_type = "t2.micro"
 
 **terraform.tfstate:** - Tracking the state of of resource. Very important, as without it terraform cant tell the status of resources.
 
-## Important commands picked on day 1 and 2
+## Some commands picked alogn the way
 `terraform fmt`: - format the terraform script
 
 `terraform apply --auto-approve`: - avoid needding to add yes for approval
