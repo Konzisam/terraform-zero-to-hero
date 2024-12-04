@@ -1,4 +1,4 @@
-# Day 1 and 2
+## Day 1 and 2
 ## Introduction and Basic concepts
 ### Introduction
 **Infrastructure as Code (IaC):**\
