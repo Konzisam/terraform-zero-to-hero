@@ -21,7 +21,7 @@ We specify the provider and the ami(minimum requirements)
    }
 
    resource "aws_instance" "example" {
-     ami           = "ami-ami-0084a47cc718c111a"  # Specify an appropriate AMI ID
+     ami           = "ami-0084a47cc718c111a"  # Specify an appropriate AMI ID
      instance_type = "t2.micro"
    }
    ```
@@ -40,13 +40,13 @@ provider "aws" {
 }
 
 resource "aws_instance" "example1" {
-  ami = "ami-ami-0084a47cc718c111a"
+  ami = "ami-0084a47cc718c111a"
   instance_type = "t2.micro"
   provider = aws.eu-west-1 
 }
 
 resource "aws_instance" "example2" {
-  ami = "ami-ami-0084a47cc718c111a"
+  ami = "ami-0084a47cc718c111a"
   instance_type = "t2.micro"
   provider = aws.eu-central-1 
 }
@@ -108,8 +108,7 @@ If we run `terraform plan`, we get prompted to enter a value: which enables dyna
 
 We can however run `terraform plan -var "ami_id=ami-ami-0084a47cc718c111a"` in the command line to pass th value directly.
 
-For more flexibility we can use tfvars.
-
+We could also hard code the varibales, but for more flexibility we can use tfvars.
 
 ### Terraform tfvars
 `.tfvar` files are used to set specific input variables.
@@ -143,6 +142,37 @@ resource "aws_instance" "example" {
  The count attribute of the aws_instance resource uses a conditional expression. If the create_instance variable is true, it creates one EC2 instance. If create_instance is false, it creates zero instances, effectively skipping resource creation.
 
  Another use case: S3 bucket accessibility.
+
+ ### Task 4: - Creating EC2 instance specifying parameters using variables and .tfvars
+In the main.tf, we have:
+```hcl
+variable "ami_value" {
+  description = "value for the ami"
+  default = ""
+}
+
+variable "instance_value_type" {
+  description = "value for instance type"
+}
+
+provider "aws" {
+  region = "eu-west-1"
+}
+
+resource "aws_instance" "example" {
+  ami = var.ami_value
+  instance_type = var.instance_value_type
+}
+
+```
+
+In the terraform.tfvars, we have:
+
+```
+hcl
+ami_value = "ami-0084a47cc718c111a"
+instance_value_type = "t2.micro"
+```
 
 **terraform.tfstate:** - Tracking the state of of resource. Very important, as without it terraform cant tell the status of resources.
 
