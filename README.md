@@ -1,2 +1,1 @@
-Leaning terraform in 7 days
-- Day-1-and-2
+Terraform in 7 days
